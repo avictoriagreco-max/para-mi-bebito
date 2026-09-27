@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Un ramo y Hot Wheels para vos ♡</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1a0508 0%, #2b080e 50%, #150305 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      color: white;
+      padding: 20px 15px 100px 15px;
+      overflow-x: hidden;
+    }
+
+    /* Reproductor de Música */
+    .music-player {
+      position: fixed;
+      bottom: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 77, 109, 0.3);
+      padding: 12px 20px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      z-index: 100;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .music-player p {
+      font-size: 0.9rem;
+      color: #ffccd5;
+    }
+
+    .play-btn {
+      background: #ff4d6d;
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .play-btn:hover {
+      background: #c9184a;
+    }
+
+    /* Encabezado */
+    header {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      font-size: 2rem;
+      text-shadow: 0 0 10px rgba(255, 77, 109, 0.5);
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: #ffb3c6;
+      font-size: 1rem;
+    }
+
+    /* Ramo de Rosas */
+    .bouquet-container {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+      cursor: pointer;
+    }
+
+    .bouquet-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+
+    .bouquet-wrapper:hover {
+      transform: scale(1.05);
+    }
+
+    .rose-center {
+      font-size: 90px;
+      position: absolute;
+      z-index: 5;
+      filter: drop-shadow(0 0 15px rgba(255, 0, 50, 0.8));
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    .rose-petals {
+      position: absolute;
+      font-size: 55px;
+      filter: drop-shadow(0 0 10px rgba(230, 0, 40, 0.6));
+    }
+
+    .r1 { top: 20px; left: 40px; }
+    .r2 { top: 20px; right: 40px; }
+    .r3 { bottom: 60px; left: 30px; }
+    .r4 { bottom: 60px; right: 30px; }
+    .r5 { top: 10px; }
+
+    .wrapper-paper {
+      position: absolute;
+      bottom: 0;
+      width: 0;
+      height: 0;
+      border-left: 90px solid transparent;
+      border-right: 90px solid transparent;
+      border-bottom: 120px solid #590d22;
+      z-index: 2;
+      border-radius: 10px;
+      transform: rotate(180deg);
+      filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+    }
+
+    .ribbon {
+      position: absolute;
+      bottom: 85px;
+      font-size: 30px;
+      z-index: 6;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    /* Grilla de Hot Wheels */
+    .cars-section {
+      width: 100%;
+      max-width: 600px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 10px;
+    }
+
+    .car-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 117, 143, 0.2);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .car-card:hover {
+      transform: translateY(-5px);
+      border-color: #ff4d6d;
+      box-shadow: 0 8px 20px rgba(255, 77, 109, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .car-icon {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .car-card p {
+      color: #ffccd5;
+      font-size: 1rem;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Un Ramo Especial para Vos 🌹</h1>
+    <p>Tocá las tarjetas para ver los mensajes</p>
+  </header>
+
+  <!-- Ramo de Rosas Rojas -->
+  <div class="bouquet-container">
+    <div class="bouquet-wrapper">
+      <div class="rose-petals r1">🌹</div>
+      <div class="rose-petals r2">🌹</div>
+      <div class="rose-petals r3">🌹</div>
+      <div class="rose-petals r4">🌹</div>
+      <div class="rose-petals r5">🌹</div>
+      <div class="rose-center">🌹</div>
+      <div class="wrapper-paper"></div>
+      <div class="ribbon">🎀</div>
+    </div>
+  </div>
+
+  <!-- Tarjetas de Hot Wheels con Frases -->
+  <div class="cars-section">
+    
+    <div class="car-card">
+      <div class="car-icon">🏎️</div>
+      <p>"Vas a la velocidad de mis latidos cada vez que te veo."</p>
+    </div>
+
+    <div class="car-card">
+      <div class="car-icon">🚗</div>
+      <p>"Si la vida es una carrera, definitivamente quiero correrla al lado tuyo."</p>
+    </div>
+
+    <div class="car-card">
+      <div class="car-icon">🏎️💨</div>
+      <p>"Sos mi lugar favorito para frenar el tiempo."</p>
+    </div>
+
+    <div class="car-card">
+      <div class="car-icon">🚘</div>
+      <p>"Aceleraste mi corazón desde el primer día."</p>
+    </div>
+
+  </div>
+
+  <!-- Reproductor de Audio -->
+  <div class="music-player">
+    <p>🎵 Milo J - Carencias de Cordura</p>
+    <button class="play-btn" id="musicBtn" onclick="toggleMusic()">▶ Play</button>
+  </div>
+
+  <!-- Archivo de Audio Local -->
+  <audio id="bgMusic" loop>
+    <source src="cancion.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const music = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+        musicBtn.textContent = '⏸ Pausa';
+      } else {
+        music.pause();
+        musicBtn.textContent = '▶ Play';
+      }
+    }
+  </script>
+
+</body>
+</html>
